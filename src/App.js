@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Popup from "./Popup";
+import { useState, useEffect } from "react";
 
+// const App = () =>
 function App() {
+  const [buttonPopup, setButtonPopup] = useState(false);
+  const [timedPopup, setTimedPopup] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setTimedPopup(true);
+    }, 1000);
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <main>
+        <h1>Popup will appear in a sec....</h1>
+      </main>
+
+      <Popup trigger={timedPopup} setTrigger={setTimedPopup}>
+        <h2>Timed Triggered Popup</h2>
+        <p> Designed for Augersoft</p>
+      </Popup>
     </div>
   );
 }
